@@ -1,0 +1,23 @@
+
+
+    <div class="ui card invert">
+        <div class="content">
+            <div class="right floated meta" ng-if="guestCount">{{guestCount}} Gäste</div>
+            <div class="title">Tisch {{tableNumber}}</div>
+        </div>
+        <div class="image">
+        </div>
+        <div class="content" ng-repeat="order in orders">
+            <span class="ui blue label">{{order.count}}</span>
+            <label>{{order.name}}</label>            
+        </div>
+        <div class="content" ng-show="!orders || orders.length == 0">
+            Keine Bestellungen!
+        </div>
+        <div class="extra content">
+            <div class="ui large transparent left icon input">
+                <i class="alarm outline icon"></i>
+                <input type="text" placeholder="Message...">
+            </div>
+        </div>
+    </div>
