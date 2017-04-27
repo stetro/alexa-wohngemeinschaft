@@ -26,43 +26,39 @@ app = Flask(__name__)
 ask = Ask(app, "/")
 
 logging.getLogger("flask_ask").setLevel(logging.DEBUG)
+orderQuestion = "Moechtest du etwas noch bestellt?"
+orderFinish = "Ok, Vielen Dank fur deine Bestellung"
+
+orderArray = {}
+
+orderContent = []
 
 @ask.launch
 def start():
-    welcome_msg = "Willkomen"
+    welcome_msg = "Willkomen"+orderQuestion
     return question(welcome_msg)
 
 
-@ask.intent("Intent",convert={})
-def Intent():
-    session.attributes['current_dialog'] = ''
-    speech = ""
-    return question(speech).standard_card(title='',
-                           text="",
-                           large_image_url='').reprompt("")
+@ask.intent("OrderByNumberIntent",convert={'menuNumber':int})
+def OrderByNumberIntent(menuNumber):
+    orderContent.append(menuNumber)
+    speech = "Sie haben Nummer "+str(menuNumber)+" bestellt. "+orderQuestion
+    return question(speech).reprompt(orderQuestion)
 
 
 
 @ask.intent("AMAZON.YesIntent",convert={})
 def ResponseYesIntent():
-    speech=""
-    if session.attributes['current_dialog'] == '' :
-        return question(speech)
-    elif session.attributes['current_dialog'] == '' :
-        return question(speech)
-    else :
-        return statement(speech)
+    return question(orderQuestion)
 
 
 @ask.intent("AMAZON.NoIntent")
 def ResponseNoIntent():
-    speech=""
-    if session.attributes['current_dialog'] == '' :
-        return question(speech)
-    elif session.attributes['current_dialog'] == '' :
-        return question(speech)
-    else :
-        return statement(speech)
+    #orderArray[sessionId] = orderContent
+    print (str(orderContent))
+    return statement(orderFinish).standard_card(title='Bestellung',
+                           text="Bestellung Nummer",
+                           large_image_url='')
 
 
 def get_alexa_location():

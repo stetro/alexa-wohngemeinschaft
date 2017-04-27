@@ -1,0 +1,7 @@
+OrderByNumberIntent Ich möchte Nummer {menuNumber} bestellen
+OrderByNumberIntent Bestelle mir {menuNumber}
+OrderByNumberIntent {menuNumber}
+OrderByNumberIntent {menuNumber} bitte
+OrderByNumberIntent Ich hätte gerne die {menuNumber}
+OrderByNumberIntent Ich hätte gern die Nummer {menuNumber}
+OrderByNumberIntent Bestelle die {menuNumber} 
