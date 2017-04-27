@@ -2,6 +2,21 @@ OrderByNumberIntent Ich möchte Nummer {menuNumber} bestellen
 OrderByNumberIntent Bestelle mir {menuNumber}
 OrderByNumberIntent {menuNumber}
 OrderByNumberIntent {menuNumber} bitte
+OrderByNumberIntent Die {menuNumber} bitte
 OrderByNumberIntent Ich hätte gerne die {menuNumber}
 OrderByNumberIntent Ich hätte gern die Nummer {menuNumber}
-OrderByNumberIntent Bestelle die {menuNumber} 
+OrderByNumberIntent Bestelle die {menuNumber}
+OrderByNumberIntent Für mich bitte die {menuNumber}
+OrderByNumberIntent Ich bin die {menuNumber}
+
+OrderByNameIntent Ich möchte {menuName} bestellen
+OrderByNameIntent Bestelle mir {menuName}
+OrderByNameIntent {menuName}
+OrderByNameIntent {menuName} bitte
+OrderByNameIntent Ich hätte gerne {menuName}
+OrderByNameIntent Bestelle der {menuName}
+OrderByNameIntent Bestelle die {menuName}
+OrderByNameIntent Bestelle das {menuName}
+OrderByNameIntent Ich bin der {menuName}
+OrderByNameIntent Ich bin die {menuName}
+OrderByNameIntent Ich bin das {menuName}
