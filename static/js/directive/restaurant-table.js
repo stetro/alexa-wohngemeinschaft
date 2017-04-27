@@ -8,13 +8,10 @@ angular.module('restaurant')
             templateUrl:'template/restaurant-table.html',
             scope: {
                 tableNumber: '=',
-                guestCount: '='
+                guestCount: '=',
+                orders:'='
             },
             link: function($scope){
-                $scope.orders = [{
-                    count:5,
-                    name:'Currywurst'
-                }];
             }
         };
     });

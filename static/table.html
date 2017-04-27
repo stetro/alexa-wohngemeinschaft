@@ -58,7 +58,7 @@
 
     <!-- Page Contents -->
     <div class="pusher">
-        <div class="ui inverted vertical masthead center aligned segment">
+        <div class="ui inverted vertical masthead center aligned segment" ng-controller="TableController">
 
             <div class="ui container">
                 <div class="ui large secondary inverted pointing menu">
@@ -72,7 +72,7 @@
                 </div>
             </div>
 
-            <div class="ui container" ng-controller="TableController">
+            <div class="ui container" >
                 <img src="/img/waiter.svg" alt="Waiter" class="logo"><br>
                 <img src="/img/amazon.svg" alt="Echo" class="logo">
                 <br> <br>
@@ -82,12 +82,12 @@
             </div>
 
             <div class="ui container restaurant-table">
-                <ui class="ui grid ">
+                <ui class="ui grid">
                     <div class="five wide column">
                         &nbsp;
                     </div>
                     <div class="ten wide column">
-                        <restaurant-table table-number="3"></restaurant-table>
+                        <restaurant-table table-number="3" orders="orders"></restaurant-table>
                     </div>
                 </ui>
             </div>
