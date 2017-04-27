@@ -1,19 +1,16 @@
 {
   "intents": [
     {
-      "name": "AMAZON.CancelIntent",
-      "samples": []
+      "intent": "AMAZON.CancelIntent"
     },
     {
-      "name": "AMAZON.HelpIntent",
-      "samples": []
+      "intent": "AMAZON.HelpIntent"
     },
     {
-      "name": "AMAZON.StopIntent",
-      "samples": []
+      "intent": "AMAZON.StopIntent"
     },
     {
-      "name": "OrderByNumberIntent",
+      "intent": "OrderByNumberIntent",
       "samples": [
         "Ich möchte Nummer {menuNumber} bestellen.",
         "Bestelle mir {menuNumber}.",
@@ -25,7 +22,7 @@
       ],
       "slots": [
         {
-          "name": "menuNumber",
+          "intent": "menuNumber",
           "type": "AMAZON.NUMBER",
           "samples": []
         }
@@ -69,14 +66,14 @@
     "version": "1.0",
     "intents": [
       {
-        "name": "OrderByNumberIntent",
+        "intent": "OrderByNumberIntent",
         "confirmationRequired": true,
         "prompts": {
           "confirm": "Confirm.Intent-OrderByNumberIntent"
         },
         "slots": [
           {
-            "name": "menuNumber",
+            "intent": "menuNumber",
             "type": "AMAZON.NUMBER",
             "elicitationRequired": false,
             "confirmationRequired": false,

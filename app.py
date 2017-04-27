@@ -26,8 +26,8 @@ app = Flask(__name__,static_url_path='')
 ask = Ask(app, "/")
 
 logging.getLogger("flask_ask").setLevel(logging.DEBUG)
-orderQuestion = "Moechtest du etwas noch bestellt?"
-orderFinish = "Ok, Vielen Dank fur deine Bestellung"
+orderQuestion = "Moechtest du noch etwas bestellen?"
+orderFinish = "Ok, Vielen Dank fuer deine Bestellung"
 
 orderArray = {}
 
@@ -35,16 +35,19 @@ orderContent = []
 sessionId = "39"
 @ask.launch
 def start():
-    welcome_msg = "Willkomen"+orderQuestion
+    welcome_msg = "Herzlich willkommen im Wohngemeinschaft. Um mir ihrer Bestellung aufzugeben, sagen Sie bitte einfach Starte Wohngemeinschaft.  Moechten Sie direkt bestellen, dann sagen Sie einfach. starte Wohngemeinschaft und bestelle. gefolgt von der Menuenummer oder dem Namen."+orderQuestion
     sessionId = "39"
     return question(welcome_msg)
 
 
 @ask.intent("OrderByNumberIntent",convert={'menuNumber':int})
 def OrderByNumberIntent(menuNumber):
+    if menuNumber == None:
+        speech =" Ich habe die Nummer nicht verstanden."
+        return question(speech).reprompt(orderQuestion)
     orderContent.insert(0,menuNumber)
     print(orderContent)
-    speech = "Sie haben Nummer "+str(menuNumber)+" bestellt. "+orderQuestion
+    speech = "Sie haben die Nummer "+str(menuNumber)+" bestellt. "+orderQuestion
     print(speech)
 
     return question(speech).reprompt(orderQuestion)
@@ -57,7 +60,6 @@ def ResponseYesIntent():
 @ask.intent("AMAZON.NoIntent")
 def ResponseNoIntent():
     orderArray[sessionId] = orderContent
-    print (orderArray)
     return statement(orderFinish)
 
 
@@ -81,7 +83,7 @@ def getLocation():
 
 @app.route('/api/orders', methods=['GET'])
 def orders():
-    res = json.dumps({'39': [3]})
+    res = json.dumps(orderArray)
     return res
 
 if __name__ == '__main__':
