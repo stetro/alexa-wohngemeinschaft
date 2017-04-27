@@ -1,0 +1,89 @@
+{
+  "intents": [
+    {
+      "name": "AMAZON.CancelIntent",
+      "samples": []
+    },
+    {
+      "name": "AMAZON.HelpIntent",
+      "samples": []
+    },
+    {
+      "name": "AMAZON.StopIntent",
+      "samples": []
+    },
+    {
+      "name": "OrderByNumberIntent",
+      "samples": [
+        "Ich möchte Nummer {menuNumber} bestellen.",
+        "Bestelle mir {menuNumber}.",
+        "{menuNumber} ",
+        "{menuNumber} bitte.",
+        "Ich hätte gerne die {menuNumber}.",
+        "Ich hätte gern die Nummer {menuNumber} ",
+        "Bestelle die {menuNumber} "
+      ],
+      "slots": [
+        {
+          "name": "menuNumber",
+          "type": "AMAZON.NUMBER",
+          "samples": []
+        }
+      ]
+    }
+  ],
+  "prompts": [
+    {
+      "id": "Confirm.Intent-OrderByNumberIntent",
+      "promptVersion": "1.0",
+      "definitionVersion": "1.0",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "Darf es noch etwas sein?"
+        },
+        {
+          "type": "PlainText",
+          "value": "Vielleicht noch etwas?"
+        },
+        {
+          "type": "PlainText",
+          "value": "Wünschen Sie sonst noch etwas?"
+        },
+        {
+          "type": "PlainText",
+          "value": "Kann ich Ihnen noch etwas bringen?"
+        },
+        {
+          "type": "PlainText",
+          "value": "War es das?"
+        },
+        {
+          "type": "PlainText",
+          "value": "Ist das alles?"
+        }
+      ]
+    }
+  ],
+  "dialog": {
+    "version": "1.0",
+    "intents": [
+      {
+        "name": "OrderByNumberIntent",
+        "confirmationRequired": true,
+        "prompts": {
+          "confirm": "Confirm.Intent-OrderByNumberIntent"
+        },
+        "slots": [
+          {
+            "name": "menuNumber",
+            "type": "AMAZON.NUMBER",
+            "elicitationRequired": false,
+            "confirmationRequired": false,
+            "prompts": {}
+          }
+        ]
+      }
+    ]
+  }
+}
