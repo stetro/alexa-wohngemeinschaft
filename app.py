@@ -21,7 +21,7 @@ import logging
 
 import json
 
-app = Flask(__name__)
+app = Flask(__name__,static_url_path='')
 
 ask = Ask(app, "/")
 
@@ -32,20 +32,22 @@ orderFinish = "Ok, Vielen Dank fur deine Bestellung"
 orderArray = {}
 
 orderContent = []
-
+sessionId = "39"
 @ask.launch
 def start():
     welcome_msg = "Willkomen"+orderQuestion
+    sessionId = "39"
     return question(welcome_msg)
 
 
 @ask.intent("OrderByNumberIntent",convert={'menuNumber':int})
 def OrderByNumberIntent(menuNumber):
-    orderContent.append(menuNumber)
+    orderContent.insert(0,menuNumber)
+    print(orderContent)
     speech = "Sie haben Nummer "+str(menuNumber)+" bestellt. "+orderQuestion
+    print(speech)
+
     return question(speech).reprompt(orderQuestion)
-
-
 
 @ask.intent("AMAZON.YesIntent",convert={})
 def ResponseYesIntent():
@@ -54,11 +56,9 @@ def ResponseYesIntent():
 
 @ask.intent("AMAZON.NoIntent")
 def ResponseNoIntent():
-    #orderArray[sessionId] = orderContent
-    print (str(orderContent))
-    return statement(orderFinish).standard_card(title='Bestellung',
-                           text="Bestellung Nummer",
-                           large_image_url='')
+    orderArray[sessionId] = orderContent
+    print (orderArray)
+    return statement(orderFinish)
 
 
 def get_alexa_location():
@@ -79,6 +79,10 @@ def getLocation():
     speech = city + address
     return statement(speech)
 
+@app.route('/api/orders', methods=['GET'])
+def orders():
+    res = json.dumps({'39': [3]})
+    return res
 
 if __name__ == '__main__':
     app.run(debug=True)
